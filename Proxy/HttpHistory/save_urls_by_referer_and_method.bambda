@@ -1,0 +1,26 @@
+/* save_urls_by_referer_and_method.bambda
+
+Proxy HTTPhistory filter bambda to save a list of URLs referred to by a given URL using a given HTTP request method
+
+Recommended to run the following command after use to dedupe results:
+cat <outfile> | sort | uniq > <outfile>_deduped.txt
+
+*/
+
+// Configure parameters
+var referer = "TODO";
+var method = "POST";
+var outFile = "TODO";
+
+// Run filter
+var refVal = requestResponse.request().headerValue("Referer");
+if (requestResponse.request().method().equals(method) && refVal != null && refVal.startsWith(referer)) {
+	var out = requestResponse.request().url().split("\\?")[0]; 
+	FileWriter fw = new FileWriter(outFile, true);
+	BufferedWriter bw = new BufferedWriter(fw);
+	bw.write(out);
+	bw.newLine();
+	bw.close();
+	return true;
+}
+return false;
