@@ -10,8 +10,8 @@ String typ = requestResponse.request().url().split("/")[3];
 // Highlight row
 HighlightColor colour = null;
 switch(typ) {
-    case "CLIENT_REQUEST": colour = HighlightColor.GREEN; break;
-    case "SERVER_RESPONSE": colour = HighlightColor.YELLOW; break;
+    case "CLIENT_REQUEST": colour = HighlightColor.PINK; break;
+    case "SERVER_RESPONSE": colour = HighlightColor.BLUE; break;
 }
 requestResponse.annotations().setHighlightColor(colour);
 
