@@ -1,0 +1,8 @@
+/* mitm_relay_request_length
+
+Proxy custom column bambda to add a request length column for mitm_relay traffic
+
+*/
+
+// Set value of column
+return requestResponse.request().headerValue("Content-Length");
