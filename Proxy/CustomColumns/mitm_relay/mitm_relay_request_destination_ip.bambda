@@ -1,0 +1,15 @@
+/* mitm_relay_request_destination_ip
+
+Proxy custom column bambda to add a destination IP column for mitm_relay traffic
+
+*/
+
+// Get destination IP address
+String[] split = requestResponse.request().url().split("/");
+String destIp = "";
+if (split[4].equals("to")) {
+    destIp = split[5].split(":")[0];
+}
+
+// Set value of column
+return destIp;
