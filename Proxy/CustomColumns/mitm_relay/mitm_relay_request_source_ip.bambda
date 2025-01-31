@@ -1,0 +1,15 @@
+/* mitm_relay_request_source_ip
+
+Proxy custom column bambda to add a source IP column for mitm_relay traffic
+
+*/
+
+// Get source IP address
+String[] split = requestResponse.request().url().split("/");
+String sourceIp = "";
+if (split[4].equals("from")) {
+    sourceIp = split[5].split(":")[0];
+}
+
+// Set value of column
+return sourceIp;
