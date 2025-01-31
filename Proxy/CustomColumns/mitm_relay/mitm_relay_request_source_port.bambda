@@ -1,0 +1,15 @@
+/* mitm_relay_request_source_port
+
+Proxy custom column bambda to add a source port column for mitm_relay traffic
+
+*/
+
+// Get source port
+String[] split = requestResponse.request().url().split("/");
+String sourcePort = "";
+if (split[4].equals("from")) {
+    sourcePort = split[5].split(":")[1];
+}
+
+// Set value of column
+return sourcePort;
