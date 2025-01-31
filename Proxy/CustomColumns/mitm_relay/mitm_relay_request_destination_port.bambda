@@ -1,0 +1,15 @@
+/* mitm_relay_request_destination_port
+
+Proxy custom column bambda to add a destination port column for mitm_relay traffic
+
+*/
+
+// Get destination port
+String[] split = requestResponse.request().url().split("/");
+String destPort = "";
+if (split[4].equals("to")) {
+    destPort = split[5].split(":")[1];
+}
+
+// Set value of column
+return destPort;
