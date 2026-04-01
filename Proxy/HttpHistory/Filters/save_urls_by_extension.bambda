@@ -1,0 +1,27 @@
+/* save_urls_by_extension.bambda
+
+Proxy HTTPhistory filter bambda to save a list of URLs with a given file extension
+
+Recommended to run the following command after use to dedupe results:
+cat <outfile> | sort | uniq > <outfile>_deduped.txt
+
+*/
+
+// Configure parameters
+var extension = "TODO";
+var inScopeOnly = true;
+var outFile = "TODO";
+
+// Run filter
+if (requestResponse.request().fileExtension().equals(extension)) {
+	if (!(!requestResponse.request().isInScope() && inScopeOnly)) {
+		var out = requestResponse.request().url(); 
+		FileWriter fw = new FileWriter(outFile, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+		bw.write(out);
+		bw.newLine();
+		bw.close();
+		return true;
+    }
+}
+return false;
